@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The District - Insurance Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-yellow: #F4C430;
+            --dark-blue: #2C3E50;
+            --light-cream: #FDF6E3;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary-yellow) 0%, #FFD700 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .main-container {
+            background: var(--light-cream);
+            border-radius: 20px;
+            margin: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .navbar {
+            background: transparent;
+            padding: 20px 0;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            color: var(--dark-blue) !important;
+            font-size: 1.5rem;
+        }
+        
+        .logo-shapes {
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .shape {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 1px;
+        }
+        
+        .shape-red { background: #E74C3C; transform: rotate(45deg); }
+        .shape-blue { background: #3498DB; border-radius: 50%; }
+        .shape-green { background: #2ECC71; }
+        .shape-yellow { background: #F1C40F; border-radius: 50%; }
+        
+        .navbar-nav .nav-link {
+            color: var(--dark-blue) !important;
+            font-weight: 500;
+            margin: 0 15px;
+        }
+        
+        .btn-contact {
+            background: var(--dark-blue);
+            color: white;
+            border-radius: 25px;
+            padding: 10px 25px;
+            border: none;
+        }
+        
+        .hero-section {
+            padding: 60px 0;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: var(--dark-blue);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: var(--dark-blue);
+            margin-bottom: 30px;
+        }
+        
+        .highlight-yellow {
+            background: var(--primary-yellow);
+            padding: 5px 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .search-container {
+            background: white;
+            border-radius: 50px;
+            padding: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+        
+        .search-select {
+            border: none;
+            background: transparent;
+            padding: 15px 20px;
+            outline: none;
+            flex: 1;
+        }
+        
+        .btn-find {
+            background: var(--dark-blue);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-weight: 600;
+        }
+        
+        .hero-image {
+            position: relative;
+        }
+        
+        .floating-card {
+            position: absolute;
+            background: white;
+            border-radius: 20px;
+            padding: 15px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+        
+        .floating-card-1 {
+            top: 20%;
+            right: -10%;
+        }
+        
+        .floating-card-2 {
+            bottom: 30%;
+            right: -5%;
+        }
+        
+        .profile-pics {
+            display: flex;
+            margin-left: 10px;
+        }
+        
+        .profile-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-left: -8px;
+        }
+        
+        .count-badge {
+            background: var(--primary-yellow);
+            color: var(--dark-blue);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: -8px;
+        }
+        
+        .award-section {
+            padding: 80px 0;
+            background: var(--light-cream);
+        }
+        
+        .award-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark-blue);
+            margin-bottom: 30px;
+        }
+        
+        .award-images {
+            position: relative;
+        }
+        
+        .award-img {
+            border-radius: 20px;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .award-img-1 {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .award-img-2 {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 60%;
+            height: 150px;
+            z-index: 1;
+        }
+        
+        .yellow-circle {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: var(--primary-yellow);
+            border-radius: 50%;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .floating-card {
+                position: static;
+                margin: 10px 0;
+            }
+            
+            .main-container {
+                margin: 10px;
+            }
+        }
+
+        .business-section {
+            margin: 0;
+        }
+        
+        .insurance-types-section {
+            background: var(--light-cream);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark-blue);
+        }
+        
+        .section-subtitle {
+            font-size: 1.8rem;
+            color: var(--dark-blue);
+        }
+        
+        .insurance-card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            height: 100%;
+        }
+        
+        .insurance-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 2rem;
+            color: var(--dark-blue);
+        }
+        
+        .agent-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .agent-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .rating .stars {
+            color: #FFD700;
+            font-size: 1.2rem;
+        }
+        
+        .rating-text {
+            color: var(--dark-blue);
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .social-links a {
+            color: var(--dark-blue);
+            margin: 0 5px;
+            font-size: 1.2rem;
+        }
+        
+        .quote-form .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .insurance-benefits {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .insurance-benefits li {
+            padding: 8px 0;
+            color: var(--dark-blue);
+            font-weight: 500;
+        }
+        
+        .news-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    THE DISTRICT
+                    <div class="logo-shapes">
+                        <div class="shape shape-red"></div>
+                        <div class="shape shape-blue"></div>
+                        <div class="shape shape-green"></div>
+                        <div class="shape shape-yellow"></div>
+                    </div>
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto me-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Career</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog</a>
+                        </li>
+                    </ul>
+                    <button class="btn btn-contact">Contact Us</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="hero-title">
+                            SOLUTION OF<br>
+                            YOUR INSURANCE
+                        </h1>
+                        <h2 class="hero-subtitle">
+                            Let's Grow Your <span class="highlight-yellow">Future</span> Together
+                        </h2>
+                        <p class="text-muted mb-4">
+                            Lorem ipsum dolor sit amet consectetur. Diam vel orci at montes sit magna elementum ac quis. Nisl nec et in eu.
+                        </p>
+                        
+                        <div class="search-container d-flex">
+                            <select class="search-select flex-fill">
+                                <option>Polis</option>
+                                <option>Health Insurance</option>
+                                <option>Life Insurance</option>
+                                <option>Car Insurance</option>
+                            </select>
+                            <button class="btn-find">Find</button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="hero-image text-center position-relative">
+                            <img src="/placeholder.svg?height=500&width=400" 
+                                 alt="Insurance consultant" class="img-fluid">
+                            
+                            <!-- Floating Cards -->
+                            <div class="floating-card floating-card-1">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <strong>500+ Customers</strong>
+                                    </div>
+                                    <div class="profile-pics">
+                                        <img src="/placeholder.svg?height=30&width=30" class="profile-pic" alt="Customer">
+                                        <img src="/placeholder.svg?height=30&width=30" class="profile-pic" alt="Customer">
+                                        <img src="/placeholder.svg?height=30&width=30" class="profile-pic" alt="Customer">
+                                        <img src="/placeholder.svg?height=30&width=30" class="profile-pic" alt="Customer">
+                                        <img src="/placeholder.svg?height=30&width=30" class="profile-pic" alt="Customer">
+                                        <div class="count-badge">100+</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="floating-card floating-card-2">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <strong>500+ Insurance Agent</strong>
+                                    </div>
+                                    <div class="profile-pics">
+                                        <img src="/placeholder.svg?height=30&width=30" class="profile-pic" alt="Agent">
+                                        <img src="/placeholder.svg?height=30&width=30" class="profile-pic" alt="Agent">
+                                        <img src="/placeholder.svg?height=30&width=30" class="profile-pic" alt="Agent">
+                                        <img src="/placeholder.svg?height=30&width=30" class="profile-pic" alt="Agent">
+                                        <img src="/placeholder.svg?height=30&width=30" class="profile-pic" alt="Agent">
+                                        <div class="count-badge">100+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Award Section -->
+        <section class="award-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h2 class="award-title">
+                            We are a Award<br>
+                            <span class="highlight-yellow">Winning Company</span>
+                        </h2>
+                        <p class="text-muted">
+                            Lorem ipsum dolor sit amet consectetur. Lacinia ut elementum commodo sit faucibus nibh dictumst pharetra. Sed massa etiam sit dolor eu a. Turpis porta dignissim nunc pharetra amet ultricies. Odio diam eu nunc euismod faucibus ut molestque sagittis. Ornare risus diam.
+                        </p>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="award-images position-relative">
+                            <div class="yellow-circle"></div>
+                            <img src="/placeholder.svg?height=200&width=300" 
+                                 alt="Business professional" class="award-img award-img-1">
+                            <img src="/placeholder.svg?height=150&width=200" 
+                                 alt="Happy elderly couple" class="award-img award-img-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Meeting Section -->
+        <section class="business-section">
+            <div class="container-fluid p-0">
+                <img src="/placeholder.svg?height=400&width=1200" 
+                     alt="Business meeting" class="img-fluid w-100" style="height: 400px; object-fit: cover;">
+            </div>
+        </section>
+
+        <!-- Insurance Types Section -->
+        <section class="insurance-types-section py-5">
+            <div class="container text-center">
+                <h2 class="section-title mb-2">
+                    <span class="highlight-yellow">Best Insurance</span> For Change
+                </h2>
+                <h3 class="section-subtitle mb-5">Better Future Life</h3>
+                
+                <div class="row justify-content-center">
+                    <div class="col-md-4 mb-4">
+                        <div class="insurance-card">
+                            <div class="insurance-icon mb-3">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h4>Health Insurance</h4>
+                            <button class="btn btn-dark btn-sm mt-3">Learn More</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="insurance-card">
+                            <div class="insurance-icon mb-3">
+                                <i class="fas fa-piggy-bank"></i>
+                            </div>
+                            <h4>Retirement Insurance</h4>
+                            <button class="btn btn-dark btn-sm mt-3">Learn More</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="insurance-card">
+                            <div class="insurance-icon mb-3">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Finance Insurance</h4>
+                            <button class="btn btn-dark btn-sm mt-3">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Agents Section -->
+        <section class="agents-section py-5 bg-light">
+            <div class="container text-center">
+                <h2 class="section-title mb-2">Consult Insurance With Our</h2>
+                <h3 class="highlight-yellow d-inline-block mb-5">Best Agent</h3>
+                
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="agent-card">
+                            <img src="/placeholder.svg?height=150&width=150" class="agent-photo mb-3" alt="Alfiana Curtis">
+                            <h5>Alfiana Curtis</h5>
+                            <div class="rating mb-2">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">4.9</span>
+                            </div>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="agent-card">
+                            <img src="/placeholder.svg?height=150&width=150" class="agent-photo mb-3" alt="Zain Davis">
+                            <h5>Zain Davis</h5>
+                            <div class="rating mb-2">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">4.8</span>
+                            </div>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="agent-card">
+                            <img src="/placeholder.svg?height=150&width=150" class="agent-photo mb-3" alt="Ernestine Harrell">
+                            <h5>Ernestine Harrell</h5>
+                            <div class="rating mb-2">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">4.9</span>
+                            </div>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="agent-card">
+                            <img src="/placeholder.svg?height=150&width=150" class="agent-photo mb-3" alt="Nolan Lipshutz">
+                            <h5>Nolan Lipshutz</h5>
+                            <div class="rating mb-2">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-text">4.7</span>
+                            </div>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="quote-section py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h2 class="section-title mb-4">
+                            Get an <span class="highlight-yellow">Insurance Quote</span><br>
+                            To Get Started
+                        </h2>
+                        <form class="quote-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="First Name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="Last Name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="Email">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="tel" class="form-control" placeholder="Phone">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <select class="form-control">
+                                        <option>Select Insurance Type</option>
+                                        <option>Health Insurance</option>
+                                        <option>Life Insurance</option>
+                                        <option>Car Insurance</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-dark btn-lg">Get Quote</button>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <img src="/placeholder.svg?height=400&width=300" 
+                             alt="Insurance consultant" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Download Section -->
+        <section class="app-section py-5 bg-light">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h2 class="section-title mb-4">
+                            We are Available on <span class="highlight-yellow">Play Store</span><br>
+                            Download App Now
+                        </h2>
+                        <p class="text-muted mb-4">
+                            Lorem ipsum dolor sit amet consectetur. Lacinia ut elementum commodo sit faucibus nibh dictumst pharetra. Sed massa etiam sit dolor eu a.
+                        </p>
+                        <div class="app-buttons">
+                            <button class="btn btn-dark me-3 mb-2">Download Now</button>
+                            <button class="btn btn-outline-dark mb-2">View Demo</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <img src="/placeholder.svg?height=400&width=300" 
+                             alt="Mobile app" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New to Insurance Section -->
+        <section class="new-insurance-section py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="insurance-images">
+                            <img src="/placeholder.svg?height=200&width=300" 
+                                 alt="Business consultation" class="img-fluid mb-3">
+                            <div class="row">
+                                <div class="col-6">
+                                    <img src="/placeholder.svg?height=150&width=200" 
+                                         alt="Business team" class="img-fluid">
+                                </div>
+                                <div class="col-6">
+                                    <img src="/placeholder.svg?height=150&width=200" 
+                                         alt="Professional consultation" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="section-title mb-4">
+                            <span class="highlight-yellow">New to Insurance?</span> No Problem
+                        </h2>
+                        <p class="text-muted mb-4">
+                            Lorem ipsum dolor sit amet consectetur. Lacinia ut elementum commodo sit faucibus nibh dictumst pharetra.
+                        </p>
+                        <ul class="insurance-benefits">
+                            <li>✓ Expert guidance for beginners</li>
+                            <li>✓ Comprehensive coverage options</li>
+                            <li>✓ 24/7 customer support</li>
+                            <li>✓ Competitive rates and flexible plans</li>
+                        </ul>
+                        <button class="btn btn-dark mt-3">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News & Blog Section -->
+        <section class="news-section py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center section-title mb-5">
+                    Read Our Latest <span class="highlight-yellow">News & Blog</span>
+                </h2>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="news-card">
+                            <img src="/placeholder.svg?height=200&width=300" 
+                                 alt="News" class="img-fluid mb-3">
+                            <h5>Tips</h5>
+                            <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipiscing elit...</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="news-card">
+                            <img src="/placeholder.svg?height=200&width=300" 
+                                 alt="News" class="img-fluid mb-3">
+                            <h5>Tips</h5>
+                            <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipiscing elit...</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="news-card">
+                            <img src="/placeholder.svg?height=200&width=300" 
+                                 alt="News" class="img-fluid mb-3">
+                            <h5>Tips</h5>
+                            <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipiscing elit...</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="news-card">
+                            <img src="/placeholder.svg?height=200&width=300" 
+                                 alt="News" class="img-fluid mb-3">
+                            <h5>Tips</h5>
+                            <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipiscing elit...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-dark">Read All</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section py-5">
+            <div class="container">
+                <h2 class="text-center section-title mb-5">
+                    What <span class="highlight-yellow">People Says</span> About Us
+                </h2>
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="testimonial-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="/placeholder.svg?height=60&width=60" 
+                                     alt="Customer" class="testimonial-photo me-3">
+                                <div>
+                                    <h6>Mariana Smith</h6>
+                                    <div class="stars">★★★★★</div>
+                                </div>
+                            </div>
+                            <p class="text-muted">
+                                "Lorem ipsum dolor sit amet consectetur. Lacinia ut elementum commodo sit faucibus nibh dictumst pharetra."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mb-4">
+                        <div class="testimonial-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="/placeholder.svg?height=60&width=60" 
+                                     alt="Customer" class="testimonial-photo me-3">
+                                <div>
+                                    <h6>John Davis</h6>
+                                    <div class="stars">★★★★★</div>
+                                </div>
+                            </div>
+                            <p class="text-muted">
+                                "Lorem ipsum dolor sit amet consectetur. Lacinia ut elementum commodo sit faucibus nibh dictumst pharetra."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-dark">View All</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer-section py-5" style="background: var(--dark-blue); color: white;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <h5 class="text-white mb-3">
+                            THE DISTRICT
+                            <div class="logo-shapes">
+                                <div class="shape shape-red"></div>
+                                <div class="shape shape-blue"></div>
+                                <div class="shape shape-green"></div>
+                                <div class="shape shape-yellow"></div>
+                            </div>
+                        </h5>
+                        <p class="text-light">
+                            Your trusted insurance partner for a secure future. We provide comprehensive coverage solutions.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-light me-3"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6 class="text-white mb-3">Quick Links</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-light">Home</a></li>
+                            <li><a href="#" class="text-light">About Us</a></li>
+                            <li><a href="#" class="text-light">Products</a></li>
+                            <li><a href="#" class="text-light">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6 class="text-white mb-3">Insurance</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-light">Health</a></li>
+                            <li><a href="#" class="text-light">Life</a></li>
+                            <li><a href="#" class="text-light">Car</a></li>
+                            <li><a href="#" class="text-light">Home</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <h6 class="text-white mb-3">Newsletter</h6>
+                        <p class="text-light">Subscribe to get updates on insurance tips and offers.</p>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email">
+                            <button class="btn btn-warning">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-4" style="border-color: #495057;">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="text-light mb-0">&copy; 2024 The District. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" class="text-light me-3">Privacy Policy</a>
+                        <a href="#" class="text-light">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
